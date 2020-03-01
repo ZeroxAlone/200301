@@ -6,13 +6,13 @@ Created on Sun Mar  1 17:16:58 2020
 """
 
 DataList = ["00010011",
-            "10110001",
-            "11011000",
-            "10011100",
-            "10110010",
-            "10110001",
-            "10110001",
-            "00010100"]#Data author: Andy
+            "10110000",
+            "11011001",
+            "10011101",
+            "10110011",
+            "10100000",
+            "10110000",
+            "10101011"]
 
 RowList = []
 ColumnList = []
@@ -33,27 +33,26 @@ def Adder(x,c):
     
 def main(DL, RL, CL):
     counti = 0
+    countk = 0
     for i in DL:
         if OddParity(i) == False:
             RL.append(counti)
-            print(counti)
         counti += 1
         countj = 0
         for j in i:
             Adder(j,countj)
             countj += 1
-    for k in CL:
+    for k in Temp:
         if OddParity(k) == False:
-            CL.append(counti)
-            print(counti)
-        counti += 1
-#    for n in range(len(RL)):
-#        if DL[RL[n]][CL[n]] == "1":
-#            DL[RL[n]][CL[n]] = "0"
-#        else:
-#            DL[RL[n]][CL[n]] = "1"
-#    
-#    print(DL)
+            CL.append(countk)
+        countk += 1
+    for n in range(len(RL)):
+        if DL[RL[n]][CL[n]] == "1":
+            DL[RL[n]] = DL[RL[n]][:CL[n]]+"0"+DL[RL[n]][CL[n]+1:]
+        else:
+            DL[RL[n]] = DL[RL[n]][:CL[n]]+"1"+DL[RL[n]][CL[n]+1:]
+    
+    print(DL)
     
 main(DataList, RowList, ColumnList)
         
